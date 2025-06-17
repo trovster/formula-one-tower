@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme {
+    /* https://f1hex.com */
+    --color-f1-red: #FF1E00;
+    --color-f1-black: #15151E;
+
+    --tyre-soft: red;
+    --tyre-medium: yellow;
+    --tyre-hard: silver;
+
+    --team-ferrari: #E80020;
+    --team-mclaren: #FF8000;
+    --team-mercedes: #788084;
+    --team-williams: #64C4FF;
+    --team-alpine: #0093CC;
+    --team-aston-martin: #229971;
+    --team-red-bull-racing: #6692FF;
+    --team-racing-bulls: #6692FF;
+    --team-haas: #B6BABD;
+    --team-kick-sauber: #52E252;
+
+    --font-sans: Formula1, sans-serif;
+}
+
+@font-face {
+    font-family: 'Formula1';
+    src: url('fonts/Formula1-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Formula1';
+    src: url('fonts/Formula1-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Formula1';
+    src: url('fonts/Formula1-Wide.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+.tower {
+    max-width: 25rem;
+    margin: 2rem auto;
+}
+
+.tower--header {
+    display: block;
+    text-align: center;
+
+    h1 {
+        padding: 1.5rem 0 0;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        width: 100%;
+        text-align: center;
+        font-size: 3rem;
+        line-height: 1;
+        text-transform: uppercase;
+        background: var(--color-zinc-500);
+
+        svg {
+            height: 4rem;
+            width: auto;
+            margin: 0 auto;
+            fill: var(--color-f1-red);
+        }
+
+        span {
+            display: block;
+            padding: 1rem 0 0;
+            font-weight: bold;
+        }
+    }
+}
+
+.tower--lap-count {
+    padding: 1rem 0;
+    margin: 0 0 3px;
+    font-size: 1.333rem;
+    line-height: 1;
+    text-align: center;
+    font-weight: 900;
+    font-style: normal;
+    text-transform: uppercase;
+    background: var(--color-zinc-500);
+
+    .current {
+        margin-right: 3px;
+        font-style: normal;
+        font-size: 2rem;
+        vertical-align: middle;
+    }
+
+    .total {
+        margin-left: 4px;
+        font-style: normal;
+    }
+}
+
+.tower--body ol {
+    list-style: none;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3px 0;
+    padding: 0.5rem 1rem;
+}
+
+.manufacturer {
+    overflow: hidden;
+    display: block;
+    width: 6rem;
+    /* height: 30px; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.driver {
+    font-weight: bold;
+    font-size: 1.333rem;
+}
+
+.position {
+    margin: 0 0 0 auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.tyre {
+    display: flex;
+    height: 30px;
+    width: 30px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    border-radius: 100%;
+}
+.tyre--soft {
+    background-color: var(--tyre-soft);
+}
+.tyre--medium {
+    background-color: var(--tyre-medium);
+}
+.tyre--hard {
+    background-color: var(--tyre-hard);
+}
+
+.pit-stops,
+.points,
+.tower--track-info,
+.tower--track-info > div {
+    display: none;
+}
+
+.tower--track-info {
+    width: 100%;
+    padding: 1.25rem 1rem 1rem;
+
+    h2 {
+        font-size: 1.333rem;
+        line-height: 1;
+        font-weight: bold;
+        font-style: italic;
+    }
+}
+
+.tower--track-info:not(.status--normal),
+.status--green .status--green,
+.status--yellow .status--yellow,
+.status--red .status--red,
+.status--safety-car .status--safety-car,
+.status--vcs .status--vcs {
+    display: block;
+}
+
+.tower--track-info.status--green {
+    background-color: var(--color-green-600);
+}
+.tower--track-info.status--yellow {
+    background-color: var(--color-yellow-400);
+}
+.tower--track-info.status--red {
+    background-color: var(--color-red-600);
+}
+
+/* team specific styling */
+.team--ferrari {
+    background-color: var(--team-ferrari);
+}
+.team--mclaren {
+    background-color: var(--team-mclaren);
+}
+.team--red-bull-racing {
+    background-color: var(--team-red-bull-racing);
+}
+.team--mercedes {
+    background-color: var(--team-mercedes);
+}
+.team--williams {
+    background-color: var(--team-williams);
+}
+.team--alpine {
+    background-color: var(--team-alpine);
+}
+.team--aston-martin {
+    background-color: var(--team-aston-martin);
+}
+.team--haas-f1-team {
+    background-color: var(--team-haas);
+}
+.team--kick-sauber {
+    background-color: var(--team-kick-sauber);
+}
+.team--racing-bulls {
+    background-color: var(--team-racing-bulls);
+}

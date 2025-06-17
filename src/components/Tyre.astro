@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  tyre: CollectionEntry<'compounds'>;
+  class?: string;
+}
+
+const { tyre, class: className = '' } = Astro.props;
+---
+<abbr class:list={['tyre', `tyre--${tyre.data.slug}`, className]} title={tyre.data.name}>
+  {tyre.data.letter}
+</abbr>

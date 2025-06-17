@@ -1,0 +1,28 @@
+---
+interface Props {
+  name: string;
+  acronym: string;
+  team: string;
+  compound: string;
+  position: number|string;
+  number?: number;
+  nationality?: string;
+  class?: string;
+}
+
+import { getEntry } from 'astro:content';
+
+import Manufacturer from "@components/Manufacturer.astro";
+import Tyre from "@components/Tyre.astro";
+
+const { name, acronym, team, position, compound, class: className = '' } = Astro.props;
+
+const manufacturer = await getEntry('manufacturers', team)
+const tyre = await getEntry('compounds', compound)
+---
+<div class:list={['h-card', 'team', `team--${manufacturer?.data.slug}`, className]}>
+    <Manufacturer manufacturer={manufacturer} />
+    <abbr class="driver p-name" title={name}>{acronym}</abbr>
+    <em class="position">{position}</em>
+    <Tyre tyre={tyre} />
+</div>

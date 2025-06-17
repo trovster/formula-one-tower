@@ -1,0 +1,33 @@
+---
+interface Props {
+    status: string; // green | yellow | red | safety-car | vsc
+    class?: string;
+}
+
+const { status = 'normal', class: className = '' } = Astro.props;
+---
+<div class:list={['tower--track-info', `status--${status}`, className]}>
+    <div class="status--green">
+        <h2>Green Flag</h2>
+        <p>Track Clear</p>
+    </div>
+
+    <div class="status--yellow">
+        <h2>Yellow Flag</h2>
+        <p>Sectors 1 & 2</p>
+    </div>
+
+    <div class="status--red">
+        <h2>Red Flag</h2>
+    </div>
+
+    <div class="status--safety-car">
+        <h2>Safety Car</h2>
+        <!-- <p>Ending</p> -->
+    </div>
+
+    <div class="status--vsc">
+        <h2>Virtual Safety Car</h2>
+        <!-- <p>Ending</p> -->
+    </div>
+</div>

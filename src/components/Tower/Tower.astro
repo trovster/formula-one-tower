@@ -1,0 +1,17 @@
+---
+interface Props {
+    currentLap: number;
+    totalLaps: number;
+    status?: string;
+    class?: string;
+}
+
+import Header from "./Header.astro";
+import List from "./List.astro";
+
+const { currentLap, totalLaps, status = 'normal', class: className = '' } = Astro.props;
+---
+<div class:list={['tower', 'tower--race', className]}>
+    <Header currentLap={currentLap}, totalLaps={totalLaps}, status={status} />
+    <List />
+</div>

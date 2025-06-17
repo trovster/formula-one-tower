@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  manufacturer: CollectionEntry<'manufacturers'>;
+  class?: string;
+}
+
+import McLaren from '../assets/svg/teams/mclaren.svg';
+import Mercedes from '../assets/svg/teams/mercedes.svg';
+
+const { manufacturer, class: className = '' } = Astro.props;
+---
+<strong class:list={['manufacturer', 'p-category', className]}>
+    {manufacturer.data.name}
+</strong>

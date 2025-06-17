@@ -1,0 +1,12 @@
+---
+interface Props {
+    current: number;
+    total: number;
+    class?: string;
+}
+
+const { current, total, class: className = '' } = Astro.props;
+---
+<div class:list={['tower--lap-count', className]}>
+    Lap <strong class="current">{current}</strong>/<em class="total">{total}</em>
+</div>

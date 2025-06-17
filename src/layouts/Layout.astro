@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  class?: string;
+}
+
+import "../assets/styles/global.css";
+
+const { title, description, class: className = '' } = Astro.props;
+---
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="preload" href={new URL('fonts/Formula1-Regular.otf', Astro.url)} as="font" crossorigin="anonymous" />
+        <link rel="preload" href={new URL('fonts/Formula1-Bold.otf', Astro.url)} as="font" crossorigin="anonymous" />
+        <link rel="preload" href={new URL('fonts/Formula1-Wide.otf', Astro.url)} as="font" crossorigin="anonymous" />
+    </head>
+    <body class={className}>
+        <h1 class="text-3xl text-center mt-4 mb-2 font-bold">{title}</h1>
+        <p class="text-xl mx-auto text-center max-w-2xl">{description}</p>
+        <slot />
+    </body>
+</html>

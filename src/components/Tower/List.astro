@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    class?: string;
+}
+
+import { getCollection } from 'astro:content';
+
+const drivers = await getCollection('drivers')
+
+import Driver from "../Driver.astro";
+
+const { class: className = '' } = Astro.props;
+---
+<div class:list={['tower--body', className]}>
+    <ol>
+        {drivers.map((driver: CollectionEntry<'drivers'>, i: number) => (
+            <li>
+                <Driver
+                    name={driver.data.full_name}
+                    acronym={driver.data.name_acronym}
+                    team={driver.data.team_name}
+                    compound="Hard"
+                    position={i === 0 ? 'Leader' : '+0.000'} />
+            </li>
+        ))}
+    </ol>
+</div>
