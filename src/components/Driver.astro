@@ -1,12 +1,10 @@
 ---
+import type { CollectionEntry } from 'astro:content';
+
 interface Props {
-  name: string;
-  acronym: string;
-  team: string;
+  driver: CollectionEntry<'drivers'>;
   compound: string;
   position: number|string;
-  number?: number;
-  nationality?: string;
   class?: string;
 }
 
@@ -15,14 +13,22 @@ import { getEntry } from 'astro:content';
 import Manufacturer from "@components/Manufacturer.astro";
 import Tyre from "@components/Tyre.astro";
 
-const { name, acronym, team, position, compound, class: className = '' } = Astro.props;
+const { driver, position, compound, class: className = '' } = Astro.props;
 
-const manufacturer = await getEntry('manufacturers', team)
+const manufacturer = await getEntry(driver.data.manufacturer.collection, driver.data.manufacturer.id)
 const tyre = await getEntry('compounds', compound)
+
+if (! manufacturer) {
+  throw new Error('Manufacturer compound not found');
+}
+
+if (! tyre) {
+  throw new Error('Tyre compound not found');
+}
 ---
-<div class:list={['h-card', 'team', `team--${manufacturer?.data.slug}`, className]}>
+<div class:list={['h-card', 'team', `team--${manufacturer.data.slug}`, className]}>
     <Manufacturer manufacturer={manufacturer} />
-    <abbr class="driver p-name" title={name}>{acronym}</abbr>
+    <abbr class="driver p-name" title={driver.data.full_name}>{driver.data.name_acronym}</abbr>
     <em class="position">{position}</em>
     <Tyre tyre={tyre} />
 </div>

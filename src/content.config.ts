@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 
 import drivers from './data/drivers.json';
 import compounds from './data/compounds.json';
@@ -15,6 +15,7 @@ const driverCollection = defineCollection({
     return drivers.map((item) => ({
       id: item.full_name,
       slug: slug(item.full_name),
+      manufacturer: item.team_name,
       ...item,
     }));
   },
@@ -26,6 +27,7 @@ const driverCollection = defineCollection({
     name_acronym: z.string(),
     team_name: z.string(),
     team_colour: z.string(),
+    manufacturer: reference('manufacturers'),
   })
 });
 

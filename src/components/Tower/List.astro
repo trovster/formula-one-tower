@@ -12,17 +12,18 @@ const drivers = await getCollection('drivers')
 import Driver from "../Driver.astro";
 
 const { class: className = '' } = Astro.props;
+
+const compound = (i: number) => i % 2 === 0 ? 'Soft' : i % 3 === 0 ? 'Hard' : 'Medium';
+const position = (i: number) => (i + Math.random()).toFixed(3);
 ---
 <div class:list={['tower--body', className]}>
     <ol>
         {drivers.map((driver: CollectionEntry<'drivers'>, i: number) => (
             <li>
                 <Driver
-                    name={driver.data.full_name}
-                    acronym={driver.data.name_acronym}
-                    team={driver.data.team_name}
-                    compound="Hard"
-                    position={i === 0 ? 'Leader' : '+0.000'} />
+                    driver={driver}
+                    compound={compound(i)}
+                    position={i === 0 ? 'Leader' : position(i)} />
             </li>
         ))}
     </ol>
