@@ -14,7 +14,7 @@ import Driver from "../Driver.astro";
 const { class: className = '' } = Astro.props;
 
 const compound = (i: number) => i % 2 === 0 ? 'Soft' : i % 3 === 0 ? 'Hard' : 'Medium';
-const position = (i: number) => (i + Math.random()).toFixed(3);
+const position = (i: number): string => i === 0 ? 'Leader' : '+' + (i + Math.random()).toFixed(3);
 ---
 <div class:list={['tower--body', className]}>
     <ol>
@@ -23,7 +23,7 @@ const position = (i: number) => (i + Math.random()).toFixed(3);
                 <Driver
                     driver={driver}
                     compound={compound(i)}
-                    position={i === 0 ? 'Leader' : position(i)} />
+                    position={position(i)} />
             </li>
         ))}
     </ol>
